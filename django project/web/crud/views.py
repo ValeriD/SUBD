@@ -12,25 +12,23 @@ def index(request):
 def create(request):
     firstname = request.POST['firstname']
     lastname = request.POST['lastname']
-    #member = Member(firstname=request.POST['firstname'], lastname=request.POST['lastname'])
-    #member.save()
     cursor.execute('Insert into crud_member(firstname, lastname) values(%s, %s)', params=[firstname, lastname] )
     return redirect('/')
 
 def edit(request, id):
-    members = cursor.execute("Select * from crud_member where id=%s", params=[id])
-    #members = Member.objects.get(id=id)
+    members = Member.objects
+    members.id = id
+    members.firstname = cursor.execute("Select firstname from crud_member where id=%s", params=[id])
+    members.lastname = cursor.execute("Select lastname from crud_member where id=%s", params=[id])
     context = {'members': members}
     return render(request, 'crud/edit.html', context)
 
 def update(request, id):
-
     firstname = request.POST['firstname']
     lastname = request.POST['lastname']
-    cursor.execute("update crud_member set firstname = %s, lastname = %s ", params=[firstname, lastname])
+    member = cursor.execute("update crud_member set firstname = %s, lastname = %s where id = %s", params=[firstname, lastname, id])
     return redirect('/crud/')
 
 def delete(request, id):
-    member = Member.objects.get(id=id)
-    member.delete()
+    cursor.execute("delete from crud_member where id=%s", params=[id])
     return redirect('/crud/')
