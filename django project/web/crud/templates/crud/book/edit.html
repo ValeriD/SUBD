@@ -1,0 +1,21 @@
+{% extends 'crud/base.html' %}
+{% block body %}
+    <form method="POST" action="update/{{ book.id }}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="ISBN">ISBN</label>
+            <input type="text" name="ISBN" value="" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" value="" required="required"/>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" name="category" value="" required="required"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-edit"></span> Update</button>
+        </div>
+    </form>
+{% endblock %}

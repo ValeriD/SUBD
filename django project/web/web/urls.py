@@ -20,6 +20,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index_redirect, name='index_redirect'),
-    url(r'^crud/', include('crud.urls')),
+    #url(r'^crud/', include('crud.urls.member_urls')),
+    url(r'^crud/member/', include('crud.urls.member_urls')),
+    url(r'^crud/book/', include('crud.urls.book_urls')),
     url(r'^admin/', admin.site.urls),
 ]
