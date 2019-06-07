@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from ..models import Member
+from ..models import Member, Book, BookMember
 from django.db import connection
 
 # Create your views here.
@@ -15,7 +15,15 @@ def create(request):
     cursor.execute('Insert into crud_member(firstname, lastname) values(%s, %s)', params=[firstname, lastname] )
     return redirect('/crud/member')
 
-def show(request, id)
+def show(request, id):
+
+    member = Member.objects.raw('Select * from crud_member where id=%s', params=[id])
+    #member = Member.objects.raw('Select * from crud_member where id=%s', params=[id])
+    books = Book.objects.raw('Select book.name, book.category from crud_bookmember inner join crud_book on crud_book.id=crud_bookmember.book where crud_bookmember.member = %s', params=[id])
+    context = {'member': member,
+                'books': books,
+            }
+    return render(request, 'crud/member/show.html/', context)
 
 def edit(request, id):
     members = Member.objects
@@ -34,3 +42,7 @@ def update(request, id):
 def delete(request, id):
     cursor.execute("delete from crud_member where id=%s", params=[id])
     return redirect('/crud/member')
+def add_book(request, id):
+    book_id = request.POST['book_id']
+    cursor.execute('insert into crud_bookmember(member_id, book_id) values(%s, %s)', params=[id, book_id])
+    return redirect(show(None, id))

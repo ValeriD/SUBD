@@ -27,7 +27,7 @@
         <tr>
             <td>{{ member.firstname }}</td>
             <td>{{ member.lastname }}</td>
-            <td><center><a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
+            <td><center><a class="btn btn-sm btn-warning" href = "show/{{member.id}}">Show</a><a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
         </tr>
         {% endfor %}
     </tbody>

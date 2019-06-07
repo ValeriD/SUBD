@@ -1,0 +1,37 @@
+{% extends 'crud/base.html' %}
+{% block header %}
+<h1>Member</h1>
+{% endblock %}
+{% block body %}
+{% for m in member %}
+  <h2>{{m.firstname}} {{m.lastname}}</h1>
+
+<form class="form-inline"  action="add_book/{{m.id}}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="book_id">Book ID for adding</label>
+        <input type="text" name="book_id" class="form-control" style="width:50%;" required="required"/><br>
+        <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span> ADD</button>
+    </div>
+</form>
+<br />
+{% endfor %}
+<table class="table table-bordered">
+    <thead class="alert-warning">
+        <tr>
+            <th>Name of the book</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in bookss %}
+        <tr>
+              <td>{{ book.name }}</td>
+              <td> {{ book.category }}</td>
+              <td> <center><a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span class="glyphicon glyphicon-trash"></span> Delete</a></center></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
