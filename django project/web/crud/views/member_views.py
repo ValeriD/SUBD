@@ -15,6 +15,8 @@ def create(request):
     cursor.execute('Insert into crud_member(firstname, lastname) values(%s, %s)', params=[firstname, lastname] )
     return redirect('/crud/member')
 
+def show(request, id)
+
 def edit(request, id):
     members = Member.objects
     members.id = id

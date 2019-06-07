@@ -16,10 +16,11 @@ def create(request):
     cursor.execute('Insert into crud_book(ISBN, name, category) values(%s, %s, %s)', params=[ISBN, name, category] )
     return redirect('/crud/book')
 
+
+
 def edit(request, id):
     book = Book.objects
     book.id = id
-    
     context = {'book': book}
     return render(request, 'crud/book/edit.html', context)
 
