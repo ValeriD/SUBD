@@ -1,4 +1,7 @@
 {% extends 'crud/base.html' %}
+{% block header %}
+<h1>Members</h1>
+{% endblock %}
 {% block body %}
 <form class="form-inline"  action="create" method="POST">
     {% csrf_token %}

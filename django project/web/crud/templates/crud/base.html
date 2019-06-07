@@ -8,12 +8,19 @@
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <a class="navbar-brand" href="https://sourcecodester.com">Sourcecodester</a>
+            <a class="navbar-brand" href="">Online library</a>
+            <section class="navbar-main">
+              <a class="navbar-main" href="http://127.0.0.1:8000/">Home page</a>
+              <a class="navbar-main" href="http://127.0.0.1:8000/crud/book/">Book page</a>
+              <a class="navbar-main" href="http://127.0.0.1:8000/crud/member/">Member page</a>
+            </section>
         </div>
     </nav>
     <div class="col-md-3"></div>
     <div class="col-md-6 well">
-        <h3 class="text-primary">Python - Simple CRUD With Django Framework</h3>
+        <h3 class="text-primary">Online library</h3>
+        {% block header %}
+        {% endblock %}
         <hr style="border-top:1px dotted #000;"/>
         {% block body %}
         {% endblock %}
